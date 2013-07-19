@@ -1,8 +1,11 @@
 library(knitr)
 render_html()
-source("hooks.Rscript")
+#source("hooks.Rscript")
 
 inFile = commandArgs(trailingOnly=TRUE)[1]
 outFile = commandArgs(trailingOnly=TRUE)[2]
+
+cat("infile = ",inFile,"\n")
+opts_chunk$set(fig.path=paste0("./figure/",inFile,"/"))
 
 knit(inFile,output=outFile)
