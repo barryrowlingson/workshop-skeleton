@@ -3,11 +3,11 @@ from os import system
 import glob
 
 env=Environment()
-bld = Builder(action = '/usr/bin/Rscript knitme.R $SOURCE $TARGET',
+bld = Builder(action = '/usr/bin/Rscript knitme.Rscript $SOURCE $TARGET',
               suffix='.html',
               src_suffix='Rhtml')
 
-tangler = Builder(action = '/usr/bin/Rscript tangleme.R $SOURCE $TARGET',
+tangler = Builder(action = '/usr/bin/Rscript tangleme.Rscript $SOURCE $TARGET',
      suffix='.R',
      src_suffix='Rhtml')
 
