@@ -1,0 +1,85 @@
+hook=list()
+
+## hook$output=
+##   function(x,options){
+##     cat("output hook \n")
+##     print(x)
+##   }
+
+## hook$plot=
+## function (x, options) 
+## {
+##     if (options$fig.show == "animate") {
+##         .ani.plot.hook.html(x, options)
+##     }
+##     else {
+##         a = options$fig.align
+##         sprintf("\n <div class=\"rimage\"><img src=\"%s\" class=\"plot\" %s/></div>\n", knitr:::.upload.url(x), 
+##             switch(a, default = "", left = "style=\"float: left\"", 
+##                 right = "style=\"float: right\"", center = "style=\"margin: auto; display: block\""))
+##     }
+## }
+
+## hook$inline=
+## function (x) 
+## {
+##     sprintf(if (inherits(x, "AsIs")) 
+##         "%s"
+##     else "<code class=\"knitr inline\">%s</code>", knitr:::.inline.hook(format_sci(x, 
+##         "html")))
+## }
+
+
+hook$plot = function(x,options){
+  sprintf("\n[[[%s]]]\n",knitr:::.upload.url(x))
+}
+
+imgmodal <- function(url,name){
+sprintf('<a  data-toggle="modal" href="#img-%s" >
+<img src="%s" class="rplot" />
+</a>
+    <div class="modal hide fade" id="img-%s">
+    <button class="close" data-dismiss="modal">×</button>
+    <img src="%s" />
+    <a href="" class="btn btn-primary" data-dismiss="modal">Close</a>
+    </div> ',name,url,name,url)
+}
+
+
+hook$chunk=
+function (x, options) 
+{
+  if (knitr:::output_asis(x, options)) 
+    return(x)
+  ## find the images
+  lines = strsplit(x,"\n")[[1]]
+  gotImage = grep("^\\[\\[\\[(.*)\\]\\]\\]$",lines)
+  if(length(gotImage)>0){
+    figs = lines[gotImage]
+    lines = lines[-gotImage]
+    urls = substring(figs,4,nchar(figs)-3)
+    imgs = imgmodal(urls,options$label) #sprintf("<img src=\"%s\" />",urls)
+    imgdiv = sprintf("<div class=\"rimage\">%s</div>",paste(imgs,collapse=""))
+    tclass="transcript half"
+  }else{
+    imgdiv=""
+    tclass="transcript" # full width transcript
+  }
+  transcript = sprintf("<div class=\"%s\">%s</div>\n",tclass,paste(lines,collapse="\n"))
+  x = sprintf("<div id=\"%s\" class=\"chunk\">%s</div>", options$label, paste(transcript,imgdiv))
+  if (options$split) {
+    cat("split...\n")
+    name = fig_path(".html", options)
+    if (!file.exists(dirname(name))) 
+      dir.create(dirname(name))
+    cat(x, file = name)
+    sprintf("<iframe src=\"%s\" class=\"knitr\" width=\"100%%\"></iframe>", 
+            name)
+  }
+  else x
+}
+
+render_html()
+knit_hooks$set(hook)
+
+
