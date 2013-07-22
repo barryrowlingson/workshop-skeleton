@@ -1,0 +1,53 @@
+body > div.container-fluid > div.row-fluid { font-size: 30px ; line-height: 120%; }
+body > div.container-fluid > div.row-fluid pre { font-weight: bold; font-size: 30px; line-height: 120%; }
+body > div.container-fluid > div.row-fluid p { font-size: 30px; line-height: 120%; }
+
+div.rimage {
+width: 100%;
+float: none;
+margin: 0 auto;
+}
+
+div.rimage > img { 
+display: block;
+border: 1px solid black;
+margin: 0 auto;
+
+}
+
+div.source:hover pre { background-color: #FFFF80; }
+div.output pre { background-color: rgb(219, 255, 219);}
+div.output:hover pre { background-color: #FFFF80; }
+div.warning:hover pre { background-color: #FF8080; }
+div.error:hover pre { background-color: #FF8080; }
+
+div.message pre { background-color: rgb(219, 255, 219);}
+div.message:hover pre { background-color:#FFFF80; }
+
+code { font-size: 30px; font-weight: bold; color: #800554; }
+code:hover { background-color: #FFFF80; }
+
+div.slide { border: 2px solid white; opacity: 0.8; padding: 0.5em 0 0 0.5em; margin-bottom: 0.5em; }
+div.slide:hover { border: 2px solid black;  opacity: 1;
+                  border-radius: 10px;
+ }
+
+div.slide h2 { text-align: center; font-size: 42px; margin-bottom: 0.5em;}
+div.slide h3 { text-align: left; font-size: 21px; margin-bottom: 0.5em;}
+
+h1 {font-size: 44px; line-height: 48px; padding-bottom: 1em; text-align: left; }
+
+table.numbertab { text-align: right; font-family: monospace; border: 1px solid gray;}
+table.numbertab td { width: 2em; }
+
+pre.somehelp { font-size: 12px !important;line-height: 12px !important; }
+
+div.smallout div.message  pre{ font-size: 18px !important; line-height: 20px !important}
+div.smallout div.output  pre{ font-size: 18px !important; line-height: 20px !important}
+
+div.slide p { margin-top: 0.5em; }
+
+
+div.slide li { line-height: 180%; }
+div.slide ul.reveal li:hover { color: blue;}
+div.slide ul.reveal li { color: #888;}

@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+{% block title %}My R Page{% endblock %}
+
+{% block content %}
+
 <h1>My Page</h1>
 
 <div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="functioncall">set.seed</span>(310366)
@@ -6,4 +11,4 @@ x = <span class="functioncall">runif</span>(100)
 </pre></div></div><div class="rimage default"><img src="./figure/index.Rhtml/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div></div>
 
 
-
+{% endblock %}

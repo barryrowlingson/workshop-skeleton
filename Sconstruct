@@ -46,7 +46,7 @@ env.Alias('Rpages',Rpages)
 Rtangles = Rpages
 for tang in Rtangles:
      source = tang+".Rhtml"
-     target = os.path.join("./Site/RSources/",tang)+".R"
+     target = os.path.join("./Site/build/RSources/",tang)+".R"
      env.Tangle(source=source,target=target)
      env.Alias(tang,target)
 

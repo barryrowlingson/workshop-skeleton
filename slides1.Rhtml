@@ -1,8 +1,9 @@
-{% extends "base.html" %}
+{% extends "base_slide.html" %}
 {% block title %}My R Page{% endblock %}
 
 {% block content %}
 
+<div class="slide">
 <h1>My Page</h1>
 
 <!--begin.rcode
@@ -10,5 +11,7 @@ set.seed(310366)
 x=runif(100)
 hist(x)
 end.rcode-->
+
+</div>
 
 {% endblock %}

@@ -1,0 +1,13 @@
+# don't VC the built site
+Site/build/
+# don't VC the html - that's built from .Rhtml files
+Site/pages/
+#
+# figures get filled here by knitr
+figure/
+# is this Scons's database?
+.sconsign.dblite
+#
+# editor files
+*~
+#*#

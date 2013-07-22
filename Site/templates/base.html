@@ -1,15 +1,15 @@
-
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>My R Page</title>
+    <title>{% block title %}Spatial Analysis in R{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -19,17 +19,17 @@
         padding: 9px 0;
       }
     </style>
-    <link href="static/css/style.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}/css/style.css" rel="stylesheet">
 
-    <link href="static/css/knitr.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}/css/knitr.css" rel="stylesheet">
 
+{% block knitcss %}
+{% endblock %}
 
+{% block extrahead %}
+{% endblock %}
 
-
-
-
-
-    <link href="static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" >
+    <link href="{{STATIC_URL}}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" >
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -42,9 +42,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 
-   <script src="static/bootstrap/js/jquery.js"></script>
-    <script src="static/bootstrap/js/bootstrap.js"></script>
-    <script src="static/js/jquery.scianimator.min.js"></script>
+   <script src="{{STATIC_URL}}/bootstrap/js/jquery.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap.js"></script>
+    <script src="{{STATIC_URL}}/js/jquery.scianimator.min.js"></script>
 
   </head>
 
@@ -58,17 +58,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.html">R Workshop</a>
+          <a class="brand" href="index.html">{% trans "R Workshop" %}</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html">{% trans "Home" %}</a></li>
 	      <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Presentations<b class="caret"></b></a>
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Presentations"%}<b class="caret"></b></a>
 		<ul class="dropdown-menu">
                   <li class="nav-header">Header One</li>
-		  <li><a href="static/intro.pdf">Introduction to R</a></li>
+		  <li><a href="{{STATIC_URL}}/intro.pdf">Introduction to R</a></li>
 		  <li><a href="slides1.html">Slides</a></li>
-		  <li><a href="static/../RSources/slides1.R">Slide source</a></li>
+		  <li><a href="{{STATIC_URL}}/../RSources/slides1.R">Slide source</a></li>
                   <li class="nav-header">Header Two</li>
 		  <li><a href="spatialdata.html">Spatial Data</a></li>
 		  <li><a href="spatialops.html">Spatial Operations</a></li>
@@ -78,7 +78,7 @@
 		</ul>
 	      </li>
 	      <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Worksheets<b class="caret"></b></a>
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Worksheets"%}<b class="caret"></b></a>
 		<ul class="dropdown-menu">
                   <li class="nav-header">Beginners</l1>
                   <li><a href="quadratic.html">Quadratic Equations</a></li>
@@ -90,8 +90,8 @@
 		  <!--li><a href="krigexample.html">Interpolation and Kriging</a></li-->
 		</ul>
 	      </li>
-              <li><a href="data.html">Sample Data</a></li>
-              <li><a href="cheatsheet.html">Cheatsheet</a></li>
+              <li><a href="data.html">{% trans "Sample Data" %}</a></li>
+              <li><a href="cheatsheet.html">{% trans "Cheatsheet" %}</a></li>
             </ul>
             <p class="navbar-text pull-right">Lancaster University</p>
           </div><!--/.nav-collapse -->
@@ -104,17 +104,9 @@
 
         <div class="span12">
       
-        
-
-<h1>My Page</h1>
-
-<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="functioncall">set.seed</span>(310366)
-x = <span class="functioncall">runif</span>(100)
-<span class="functioncall">hist</span>(x)
-</pre></div></div><div class="rimage default"><img src="./figure/index.Rhtml/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div></div>
-
-
-
+        {% block content %}
+	  hello
+        {% endblock %}
         
         </div><!--/span-->
 
@@ -134,8 +126,8 @@ x = <span class="functioncall">runif</span>(100)
 $("span.functioncall").replaceWith(function(){return '<a target="_blank" title="Search" href="http://rgm3.lab.nig.ac.jp/RGM/r_function_list?query='+$(this).text()+'">'+$(this).text()+'</a>'})
 </script-->
 
-
-
+{% block extrafoot %}
+{% endblock %}
 
   </body>
 </html>
